@@ -156,14 +156,14 @@ def start_calc():
             result = {(a, b) for a in A for b in B}
             print_result(result, "Декартово произведение (A * B)")
 
-        # 5. Выборка (Selection)
+        # 5. Выборка 
         elif choice == '5':
             val = input("Введите значение для выборки: ").strip()
             val = parse(val)
             result = {row for row in A if val in row}
             print_result(result, f"Выборка по значению '{val}'")
 
-        # 6. Проекция (Projection)
+        # 6. Проекция
         elif choice == '6':
             try:
                 col = int(input("Введите номер столбца (0, 1, ...): ").strip())
@@ -179,7 +179,7 @@ def start_calc():
             except Exception as e:
                 print(f"Ошибка при выполнении проекции: {e}")
 
-        # 7. Соединение (Join)
+        # 7. Соединение
         elif choice == '7':
             if not A or not B:
                 print_result(set(), "Соединение (пустые множества)")
@@ -218,7 +218,7 @@ def start_calc():
             else:
                 print("Не удалось выполнить соединение")
 
-        # 8. Деление (Division)
+        # 8. Деление
         elif choice == '8':
             if not B:
                 print("Ошибка: деление на пустое множество невозможно")
