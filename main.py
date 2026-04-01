@@ -186,7 +186,7 @@ def start_calc():
             except Exception as e:
                 print(f"Ошибка при выполнении проекции: {e}")
 
-        # 7. Соединение
+       # 7. Соединение
         elif choice == '7':
             if not A or not B:
                 print_result(set(), "Соединение (пустые множества)")
@@ -211,15 +211,23 @@ def start_calc():
                           if isinstance(a, tuple) and isinstance(b, tuple) and a[-1] == b[0]}
                 print_result(result, "Соединение (natural join)")
 
-            # Смешанные случаи
+            # A - кортежи, B - простые элементы
             elif len_a >= 2 and len_b == 1:
-                result = {a[:-1] + (b,) for a in A for b in B
-                          if isinstance(a, tuple) and a[-1] == b}
+                result = set()
+                for a in A:
+                    if isinstance(a, tuple):
+                        for b in B:
+                            if a[-1] == b:
+                                result.add(a[:-1] + (b,))
                 print_result(result, "Соединение (A - кортежи, B - значения)")
 
+            # A - простые элементы, B - кортежи
             elif len_a == 1 and len_b >= 2:
-                result = {(a,) + b[1:] for a in A for b in B
-                          if a == b[0]}
+                result = set()
+                for a in A:
+                    for b in B:
+                        if isinstance(b, tuple) and a == b[0]:
+                            result.add((a,) + b[1:])
                 print_result(result, "Соединение (A - значения, B - кортежи)")
 
             else:
