@@ -154,7 +154,7 @@ def start_calc():
         # 4. Декартово произведение
         elif choice == '4':
             result = {(a, b) for a in A for b in B}
-            print_result(result, "Декартово произведение (A × B)")
+            print_result(result, "Декартово произведение (A * B)")
 
         # 5. Выборка (Selection)
         elif choice == '5':
