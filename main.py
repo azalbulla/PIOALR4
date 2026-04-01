@@ -156,11 +156,18 @@ def start_calc():
             result = {(a, b) for a in A for b in B}
             print_result(result, "Декартово произведение (A * B)")
 
-        # 5. Выборка 
+        # 5. Выборка
         elif choice == '5':
             val = input("Введите значение для выборки: ").strip()
             val = parse(val)
-            result = {row for row in A if val in row}
+            result = set()
+            for row in A:
+                if isinstance(row, tuple):
+                    if val in row:
+                        result.add(row)
+                else:
+                    if row == val:
+                        result.add(row)
             print_result(result, f"Выборка по значению '{val}'")
 
         # 6. Проекция
